@@ -1,42 +1,45 @@
 import { pricing } from "@/lib/content";
+import Reveal from "./Reveal";
 
 export default function Pricing() {
   return (
-    <section id="cenik" className="py-20">
+    <section id="cenik" className="bg-ink-950 py-24">
       <div className="container-x max-w-4xl">
-        <h2 className="section-title text-center">{pricing.title}</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-forest-900/70">
-          {pricing.intro}
-        </p>
-        <div className="mt-10 overflow-hidden rounded-2xl border border-forest-100 bg-white shadow-sm">
-          <table className="w-full text-left">
-            <thead className="bg-forest-50 text-forest-800">
-              <tr>
-                <th className="px-6 py-4 text-sm font-semibold">Sezóna</th>
-                <th className="px-6 py-4 text-sm font-semibold">Termíny</th>
-                <th className="px-6 py-4 text-right text-sm font-semibold">
-                  Cena / noc
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-forest-100">
+        <Reveal className="text-center">
+          <p className="section-eyebrow justify-center">
+            <span className="h-px w-8 bg-ember-500" /> Ceník
+          </p>
+          <h2 className="section-title">{pricing.title}</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-stone-400">{pricing.intro}</p>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <div className="card mt-12 overflow-hidden">
+            <div className="divide-y divide-white/10">
               {pricing.rows.map((r) => (
-                <tr key={r.season}>
-                  <td className="px-6 py-4 font-medium text-forest-900">
-                    {r.season}
-                  </td>
-                  <td className="px-6 py-4 text-forest-900/70">{r.note}</td>
-                  <td className="px-6 py-4 text-right font-semibold text-forest-700">
-                    {r.price}
-                  </td>
-                </tr>
+                <div
+                  key={r.season}
+                  className="flex flex-wrap items-center justify-between gap-2 px-6 py-5 transition hover:bg-white/[0.03]"
+                >
+                  <div>
+                    <p className="font-display text-lg uppercase tracking-wide text-white">
+                      {r.season}
+                    </p>
+                    <p className="text-sm text-stone-500">{r.note}</p>
+                  </div>
+                  <span className="text-lg font-bold text-ember-500">{r.price}</span>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </div>
+        </Reveal>
+        <p className="mt-4 text-center text-sm text-stone-500">{pricing.footnote}</p>
+
+        <div className="mt-10 text-center">
+          <a href="#rezervace" className="btn-primary">
+            Nezávazně poptat termín
+          </a>
         </div>
-        <p className="mt-4 text-center text-sm text-forest-900/60">
-          {pricing.footnote}
-        </p>
       </div>
     </section>
   );

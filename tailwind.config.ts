@@ -8,34 +8,54 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        forest: {
-          50: "#f3f6f2",
-          100: "#e3ebe0",
-          200: "#c7d8c2",
-          300: "#a1bd99",
-          400: "#759c6b",
-          500: "#547f4b",
-          600: "#3f6539",
-          700: "#33502f",
-          800: "#2b4128",
-          900: "#243622",
+        // Tmavá základna (uhel / kámen)
+        ink: {
+          950: "#0a0a0b",
+          900: "#121214",
+          850: "#17171a",
+          800: "#1d1d21",
+          700: "#2a2a30",
+          600: "#3a3a42",
         },
-        wood: {
-          50: "#faf6f0",
-          100: "#f1e7d8",
-          200: "#e2cdb0",
-          300: "#d0ac80",
-          400: "#bf8c57",
-          500: "#b1763f",
-          600: "#9c6034",
-          700: "#814a2d",
-          800: "#6a3d2a",
-          900: "#583425",
+        // Rockový akcent – ember (oheň krbu, energie)
+        ember: {
+          50: "#fff7ed",
+          100: "#ffedd5",
+          200: "#fed7aa",
+          300: "#fdba74",
+          400: "#fb923c",
+          500: "#f97316",
+          600: "#ea580c",
+          700: "#c2410c",
+          800: "#9a3412",
+        },
+        // Doplňkový horský odstín
+        moss: {
+          400: "#8aa978",
+          500: "#6b8b58",
+          600: "#516b43",
         },
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        serif: ["var(--font-serif)", "Georgia", "serif"],
+        display: ["var(--font-display)", "Impact", "sans-serif"],
+      },
+      letterSpacing: {
+        tightest: "-0.04em",
+      },
+      keyframes: {
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "slow-zoom": {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(1.12)" },
+        },
+      },
+      animation: {
+        "fade-up": "fade-up 0.7s cubic-bezier(0.22,1,0.36,1) both",
+        "slow-zoom": "slow-zoom 18s ease-out forwards",
       },
     },
   },

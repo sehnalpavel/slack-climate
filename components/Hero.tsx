@@ -1,35 +1,51 @@
-import { hero, site } from "@/lib/content";
-import Icon from "./Icon";
+import { hero, stats } from "@/lib/content";
 
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-hidden">
-      <div
-        className="absolute inset-0 -z-10 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "linear-gradient(to bottom, rgba(36,54,34,0.55), rgba(36,54,34,0.7)), url('https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&w=2000&q=70')",
-        }}
-      />
-      <div className="container-x flex min-h-[78vh] flex-col justify-center py-24 text-white">
-        <p className="mb-4 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-wood-100">
-          <Icon name="pin" className="h-4 w-4" />
-          {site.location} · {site.region}
-        </p>
-        <h1 className="max-w-3xl font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-          {hero.headline}
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-wood-50/95">
-          {hero.subheadline}
-        </p>
-        <div className="mt-10 flex flex-wrap gap-4">
-          <a href="#rezervace" className="btn-primary">
-            Zjistit dostupnost a rezervovat
-          </a>
-          <a href="#galerie" className="btn-outline !border-white !text-white hover:!bg-white/10">
-            Prohlédnout fotky
-          </a>
+    <section className="grain relative isolate min-h-screen overflow-hidden">
+      {/* Pozadí */}
+      <div className="absolute inset-0 -z-20">
+        <img
+          src="https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&w=2000&q=75"
+          alt="Horská chalupa v zimní krajině Krkonoš"
+          className="h-full w-full animate-slow-zoom object-cover"
+        />
+      </div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink-950/80 via-ink-950/65 to-ink-950" />
+
+      <div className="container-x flex min-h-screen flex-col justify-end pb-16 pt-28">
+        <div className="max-w-3xl animate-fade-up">
+          <p className="mb-5 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-ember-400">
+            <span className="h-px w-10 bg-ember-500" />
+            {hero.kicker}
+          </p>
+          <h1 className="display text-6xl leading-[0.85] text-white sm:text-7xl lg:text-8xl">
+            ROCK<span className="text-ember-500">ytnice</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-lg text-stone-300">
+            {hero.subheadline}
+          </p>
+          <div className="mt-9 flex flex-wrap gap-4">
+            <a href="#rezervace" className="btn-primary">
+              Zjistit dostupnost
+            </a>
+            <a href="#galerie" className="btn-ghost">
+              Prohlédnout chalupu
+            </a>
+          </div>
         </div>
+
+        {/* Statistiky */}
+        <dl className="mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label} className="bg-ink-950/70 px-5 py-6 backdrop-blur-sm">
+              <dt className="display text-4xl text-ember-500">{s.value}</dt>
+              <dd className="mt-1 text-xs uppercase tracking-wide text-stone-400">
+                {s.label}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

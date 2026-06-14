@@ -69,7 +69,6 @@ export default function BookingSection() {
     return busy.has(iso);
   }
 
-  /** Je některá noc v intervalu [a, b) obsazená? */
   function rangeHasConflict(aIso: string, bIso: string): boolean {
     let cur = fromISODate(aIso);
     const end = fromISODate(bIso);
@@ -84,15 +83,12 @@ export default function BookingSection() {
     const d = fromISODate(iso);
     if (d < today) return;
 
-    // Začínáme nový výběr.
     if (!from || (from && to)) {
-      if (isBusyNight(iso)) return; // na obsazenou noc nelze přijet
+      if (isBusyNight(iso)) return;
       setFrom(iso);
       setTo(null);
       return;
     }
-
-    // Druhý klik – nastavení odjezdu.
     if (iso === from) {
       setFrom(null);
       setTo(null);
@@ -104,7 +100,6 @@ export default function BookingSection() {
       setTo(null);
       return;
     }
-    // iso > from → odjezd. Nesmí přeskočit obsazenou noc.
     if (rangeHasConflict(from, iso)) {
       setFeedback("Vybraný termín obsahuje již obsazené noci. Zvolte prosím jiný.");
       setFrom(iso);
@@ -153,35 +148,40 @@ export default function BookingSection() {
   }
 
   return (
-    <section id="rezervace" className="bg-forest-50 py-20">
+    <section id="rezervace" className="border-y border-white/10 bg-ink-900 py-24">
       <div className="container-x">
-        <h2 className="section-title text-center">Dostupnost a rezervace</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-forest-900/70">
-          Vyberte termín v kalendáři a odešlete nezávaznou poptávku. Obsazené
-          termíny se načítají z našeho kalendáře v reálném čase. Rezervace je
-          platná po našem potvrzení.
-        </p>
+        <div className="text-center">
+          <p className="section-eyebrow justify-center">
+            <span className="h-px w-8 bg-ember-500" /> Rezervace
+          </p>
+          <h2 className="section-title">Dostupnost a rezervace</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-stone-400">
+            Vyberte termín v kalendáři a odešlete nezávaznou poptávku. Obsazené
+            termíny se načítají z našeho kalendáře v reálném čase. Rezervace platí
+            po našem potvrzení.
+          </p>
+        </div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
           {/* Kalendář */}
-          <div className="rounded-2xl border border-forest-100 bg-white p-6 shadow-sm">
-            <div className="mb-4 flex items-center justify-between">
+          <div className="card p-6">
+            <div className="mb-5 flex items-center justify-between">
               <button
                 type="button"
                 onClick={() => setMonthCursor((m) => new Date(m.getFullYear(), m.getMonth() - 1, 1))}
-                className="rounded-full p-2 text-forest-700 transition hover:bg-forest-50 disabled:opacity-30"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-stone-300 transition hover:border-ember-500 hover:text-ember-400 disabled:opacity-25"
                 disabled={monthCursor <= startOfMonth(new Date())}
                 aria-label="Předchozí měsíc"
               >
                 ‹
               </button>
-              <span className="font-serif text-lg font-semibold text-forest-800">
+              <span className="font-display text-lg uppercase tracking-wide text-white">
                 Kalendář dostupnosti
               </span>
               <button
                 type="button"
                 onClick={() => setMonthCursor((m) => new Date(m.getFullYear(), m.getMonth() + 1, 1))}
-                className="rounded-full p-2 text-forest-700 transition hover:bg-forest-50"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-stone-300 transition hover:border-ember-500 hover:text-ember-400"
                 aria-label="Další měsíc"
               >
                 ›
@@ -189,62 +189,44 @@ export default function BookingSection() {
             </div>
 
             <div className="grid gap-8 sm:grid-cols-2">
-              <MonthGrid
-                month={monthCursor}
-                today={today}
-                isBusy={isBusyNight}
-                inRange={inSelectedRange}
-                from={from}
-                to={to}
-                onPick={handleDayClick}
-              />
-              <MonthGrid
-                month={new Date(monthCursor.getFullYear(), monthCursor.getMonth() + 1, 1)}
-                today={today}
-                isBusy={isBusyNight}
-                inRange={inSelectedRange}
-                from={from}
-                to={to}
-                onPick={handleDayClick}
-              />
+              <MonthGrid month={monthCursor} today={today} isBusy={isBusyNight} inRange={inSelectedRange} from={from} to={to} onPick={handleDayClick} />
+              <MonthGrid month={new Date(monthCursor.getFullYear(), monthCursor.getMonth() + 1, 1)} today={today} isBusy={isBusyNight} inRange={inSelectedRange} from={from} to={to} onPick={handleDayClick} />
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-forest-900/70">
+            <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-stone-400">
               <span className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded bg-forest-600" /> vybráno
+                <span className="h-3 w-3 rounded bg-ember-500" /> vybráno
               </span>
               <span className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded bg-wood-200" /> obsazeno
+                <span className="h-3 w-3 rounded bg-ink-700" /> obsazeno
               </span>
               <span className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded border border-forest-200 bg-white" /> volné
+                <span className="h-3 w-3 rounded border border-white/20" /> volné
               </span>
             </div>
 
             {calLoaded && calMessage && (
-              <p className="mt-4 rounded-lg bg-wood-50 p-3 text-xs text-wood-800">
+              <p className="mt-4 rounded-lg border border-ember-500/20 bg-ember-500/5 p-3 text-xs text-ember-200">
                 {calMessage}
               </p>
             )}
           </div>
 
           {/* Formulář */}
-          <div className="rounded-2xl border border-forest-100 bg-white p-6 shadow-sm">
+          <div className="card p-6">
             {status === "ok" ? (
               <div className="flex h-full flex-col items-center justify-center text-center">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-forest-100 text-2xl text-forest-700">
+                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-ember-500/15 text-3xl text-ember-500">
                   ✓
                 </div>
-                <h3 className="font-serif text-xl font-bold text-forest-800">
-                  Poptávka odeslána
-                </h3>
-                <p className="mt-2 max-w-sm text-sm text-forest-900/70">
+                <h3 className="display text-2xl text-white">Poptávka odeslána</h3>
+                <p className="mt-2 max-w-sm text-sm text-stone-400">
                   Děkujeme! Ozveme se vám co nejdříve s potvrzením dostupnosti a
                   cenovou nabídkou pro termín {from} → {to}.
                 </p>
                 <button
                   type="button"
-                  className="btn-outline mt-6"
+                  className="btn-ghost mt-6"
                   onClick={() => {
                     setStatus("idle");
                     setFrom(null);
@@ -257,10 +239,10 @@ export default function BookingSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="rounded-xl bg-forest-50 p-4 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-forest-900/70">Vybraný termín</span>
-                    <span className="font-semibold text-forest-800">
+                <div className="rounded-xl border border-white/10 bg-ink-950 p-4 text-sm">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-stone-500">Vybraný termín</span>
+                    <span className="font-semibold text-white">
                       {from && to
                         ? `${from} → ${to} · ${nights} ${nightWord(nights)}`
                         : from
@@ -272,78 +254,38 @@ export default function BookingSection() {
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <Field label="Jméno a příjmení" required>
-                    <input
-                      type="text"
-                      required
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className={inputClass}
-                    />
+                    <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClass} />
                   </Field>
                   <Field label="Počet osob">
-                    <input
-                      type="number"
-                      min={1}
-                      max={20}
-                      value={form.guests}
-                      onChange={(e) => setForm({ ...form, guests: e.target.value })}
-                      className={inputClass}
-                      placeholder="2–20"
-                    />
+                    <input type="number" min={1} max={20} value={form.guests} onChange={(e) => setForm({ ...form, guests: e.target.value })} className={inputClass} placeholder="1–20" />
                   </Field>
                   <Field label="E-mail" required>
-                    <input
-                      type="email"
-                      required
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className={inputClass}
-                    />
+                    <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} />
                   </Field>
                   <Field label="Telefon">
-                    <input
-                      type="tel"
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className={inputClass}
-                    />
+                    <input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} />
                   </Field>
                 </div>
 
                 <Field label="Zpráva">
-                  <textarea
-                    rows={3}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className={inputClass}
-                    placeholder="Dotazy, požadavky, počet dětí…"
-                  />
+                  <textarea rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={inputClass} placeholder="Dotazy, požadavky, počet dětí…" />
                 </Field>
 
-                {/* Honeypot – skryté pole proti spamu */}
-                <input
-                  type="text"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  value={form.website}
-                  onChange={(e) => setForm({ ...form, website: e.target.value })}
-                  className="hidden"
-                  aria-hidden="true"
-                />
+                <input type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} className="hidden" aria-hidden="true" />
 
                 {status === "error" && feedback && (
-                  <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{feedback}</p>
+                  <p className="rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-300">{feedback}</p>
                 )}
                 {status !== "error" && feedback && (
-                  <p className="rounded-lg bg-wood-50 p-3 text-sm text-wood-800">{feedback}</p>
+                  <p className="rounded-lg border border-ember-500/20 bg-ember-500/5 p-3 text-sm text-ember-200">{feedback}</p>
                 )}
 
                 <button type="submit" className="btn-primary w-full" disabled={status === "loading"}>
                   {status === "loading" ? "Odesílám…" : "Odeslat nezávaznou poptávku"}
                 </button>
-                <p className="text-center text-xs text-forest-900/60">
-                  Nebo nám zavolejte na{" "}
-                  <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="underline">
+                <p className="text-center text-xs text-stone-500">
+                  Nebo zavolejte na{" "}
+                  <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="text-ember-400 underline">
                     {contact.phone}
                   </a>
                 </p>
@@ -357,7 +299,7 @@ export default function BookingSection() {
 }
 
 const inputClass =
-  "w-full rounded-lg border border-forest-200 bg-white px-3 py-2 text-sm text-forest-900 outline-none transition focus:border-forest-500 focus:ring-2 focus:ring-forest-100";
+  "w-full rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-sm text-white outline-none transition placeholder:text-stone-600 focus:border-ember-500 focus:ring-2 focus:ring-ember-500/20";
 
 function Field({
   label,
@@ -370,8 +312,8 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-medium text-forest-900/80">
-        {label} {required && <span className="text-red-500">*</span>}
+      <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-stone-400">
+        {label} {required && <span className="text-ember-500">*</span>}
       </span>
       {children}
     </label>
@@ -413,10 +355,10 @@ function MonthGrid({
 
   return (
     <div>
-      <div className="mb-2 text-center font-semibold capitalize text-forest-800">
+      <div className="mb-2 text-center font-display uppercase tracking-wide text-white">
         {CZ_MONTHS[m]} {year}
       </div>
-      <div className="grid grid-cols-7 gap-1 text-center text-xs text-forest-900/50">
+      <div className="grid grid-cols-7 gap-1 text-center text-[0.65rem] uppercase text-stone-600">
         {CZ_WEEKDAYS.map((w) => (
           <div key={w} className="py-1">
             {w}
@@ -434,20 +376,14 @@ function MonthGrid({
           const disabled = past || (busy && !selected);
 
           let cls = "relative h-9 rounded-lg text-sm transition ";
-          if (past) cls += "cursor-not-allowed text-forest-900/25 ";
-          else if (busy) cls += "cursor-not-allowed bg-wood-200 text-wood-800/70 line-through ";
-          else if (isEdge) cls += "bg-forest-600 font-semibold text-white ";
-          else if (selected) cls += "bg-forest-200 text-forest-900 ";
-          else cls += "text-forest-900 hover:bg-forest-100 ";
+          if (past) cls += "cursor-not-allowed text-stone-700 ";
+          else if (busy) cls += "cursor-not-allowed bg-ink-700 text-stone-500 line-through ";
+          else if (isEdge) cls += "bg-ember-500 font-bold text-ink-950 ";
+          else if (selected) cls += "bg-ember-500/25 text-white ";
+          else cls += "text-stone-200 hover:bg-white/10 ";
 
           return (
-            <button
-              key={i}
-              type="button"
-              disabled={disabled}
-              onClick={() => onPick(iso)}
-              className={cls}
-            >
+            <button key={i} type="button" disabled={disabled} onClick={() => onPick(iso)} className={cls}>
               {cell.getDate()}
             </button>
           );
