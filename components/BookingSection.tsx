@@ -158,8 +158,8 @@ export default function BookingSection() {
         <h2 className="section-title text-center">Dostupnost a rezervace</h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-forest-900/70">
           Vyberte termín v kalendáři a odešlete nezávaznou poptávku. Obsazené
-          termíny jsou převzaté z kalendáře e-chalupy.cz. Rezervace je platná po
-          našem potvrzení.
+          termíny se načítají z našeho kalendáře v reálném čase. Rezervace je
+          platná po našem potvrzení.
         </p>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">

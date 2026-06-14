@@ -31,35 +31,46 @@ Proměnné prostředí (viz [`.env.example`](.env.example)):
 
 | Proměnná | Význam |
 | --- | --- |
-| `ECHALUPY_ICAL_URL` | Odkaz na iCal export obsazenosti z e-chalupy.cz |
+| `GOOGLE_CALENDAR_ICAL_URL` | Tajná/veřejná iCal adresa Google kalendáře (zdroj pravdy) |
+| `ECHALUPY_ICAL_URL` | (volitelné) iCal export obsazenosti z e-chalupy.cz – sloučí se |
+| `AVAILABILITY_ICAL_URLS` | (volitelné) další iCal zdroje oddělené čárkou – sloučí se |
 | `RESERVATION_EMAIL` | Kam chodí poptávky z formuláře |
 | `RESEND_API_KEY` | API klíč Resend pro odesílání e-mailů (volitelné) |
 | `RESEND_FROM` | Odesílací adresa na ověřené doméně v Resendu |
 
 ## Synchronizace kalendáře s e-chalupy.cz
 
-Web čte obsazenost přímo z vašeho kalendáře na e-chalupy.cz, takže obsazené
-termíny se na webu zobrazí automaticky a hosté je nemohou poptat.
+**Zdrojem pravdy o obsazenosti je Google kalendář.** Vy spravujete obsazenost
+v jednom Google kalendáři, web ji čte v reálném čase a obsazené noci hosté
+nemohou poptat. Stejný kalendář lze sdílet i s e-chalupy.cz, takže všude svítí
+stejná dostupnost.
 
-**Získání odkazu (export z e-chalupy → web):**
+**Napojení Google kalendáře → web:**
 
-1. Přihlaste se do klientské administrace e-chalupy.cz.
-2. Otevřete sekci **OBSAZENOST** → řádek **Synchronizace kalendářů** → **EXPORT**.
-   (Přímý odkaz: <https://klient.e-chalupy.cz/obsazenost-export-ics/>.)
-3. Zvolte variantu **„včetně podrobností"** a klikněte na **Zkopírovat odkaz**.
-   > ⚠️ Variantu *bez* detailů nepoužívejte — vrací chybná data.
-4. Tento odkaz vložte do proměnné `ECHALUPY_ICAL_URL`.
+1. Doporučujeme založit samostatný kalendář, např. „Chalupa ROCKytnice".
+2. V Google Kalendáři otevřete **Nastavení** daného kalendáře →
+   **Integrace kalendáře**.
+3. Zkopírujte **„Tajná adresa ve formátu iCal"** (odkaz končící na `/basic.ics`).
+4. Vložte ho do proměnné `GOOGLE_CALENDAR_ICAL_URL`.
 
-Kalendář se obnovuje automaticky každou hodinu (cache).
+Obsazenost zadáváte jako běžné celodenní události (od příjezdu do odjezdu).
+Kalendář se na webu obnovuje automaticky každou hodinu (cache).
 
-**Obousměrná synchronizace (rezervace z webu → e-chalupy):**
+**Sdílení dostupnosti s e-chalupy.cz:**
 
-E-chalupy.cz umí i import cizích kalendářů. Pokud chcete, aby se potvrzené
-rezervace z tohoto webu propsaly zpět do e-chalupy, je potřeba doplnit
-veřejný iCal *export* z tohoto webu a vložit ho do importu v e-chalupy.
-Aktuálně web zatím nemá perzistentní úložiště rezervací (poptávky chodí
-e-mailem), takže potvrzené pobyty zadávejte do obsazenosti e-chalupy ručně,
-nebo si řekněte o doplnění databáze rezervací s vlastním iCal exportem.
+E-chalupy.cz umí importovat cizí iCal kalendář. V jejich administraci nastavte
+**import** a vložte tutéž tajnou iCal adresu Google kalendáře — tím se Google
+kalendář stane zdrojem pravdy i pro e-chalupy. Obsazenost z e-chalupy pak
+nemusíte řešit zvlášť.
+
+Naopak pokud chcete do webu zahrnout i rezervace evidované přímo v e-chalupy,
+přidejte jejich iCal **export** (varianta „včetně podrobností",
+<https://klient.e-chalupy.cz/obsazenost-export-ics/>) do proměnné
+`ECHALUPY_ICAL_URL`. Web pak sloučí obsazenost z obou zdrojů.
+
+**Potvrzené poptávky z webu** zapisujte do Google kalendáře (zdroje pravdy) —
+odtud se propíšou na web i do e-chalupy. Automatický zápis poptávky do Google
+kalendáře zatím není součástí webu; lze doplnit přes Google Calendar API.
 
 ## Rezervační formulář
 
