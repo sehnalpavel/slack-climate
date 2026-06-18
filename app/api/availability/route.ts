@@ -66,7 +66,13 @@ export async function GET() {
     }),
   );
 
-  const busy = Array.from(all).sort();
+  // Historii nepotřebujeme — kalendář na webu zobrazuje jen aktuální a budoucí
+  // měsíce. Ořízneme na termíny od (dnešek − 2 dny) výš (rezerva kvůli časovým
+  // zónám), čímž výrazně zmenšíme přenášená data.
+  const cutoff = new Date(Date.now() - 2 * 86400000).toISOString().slice(0, 10);
+  const busy = Array.from(all)
+    .filter((d) => d >= cutoff)
+    .sort();
 
   return NextResponse.json(
     {
