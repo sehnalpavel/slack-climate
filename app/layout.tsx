@@ -3,6 +3,7 @@ import "./globals.css";
 import { site } from "@/lib/content";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rockytnice.cz"),
   title: `${site.name} — pronájem horské chalupy, ${site.location}`,
   description:
     "Pronájem prostorné horské chalupy až pro 20 osob v Dolní Rokytnici nad Jizerou v Krkonoších. Krb, kulečník, sedm pokojů. Online rezervace a kalendář dostupnosti.",
@@ -13,10 +14,15 @@ export const metadata: Metadata = {
     "horská chalupa pro 20 osob",
     "Chalupa ROCKytnice",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: `${site.name} — ${site.location}`,
     description:
       "Prostorná horská chalupa až pro 20 osob v Krkonoších. Online rezervace a kalendář dostupnosti.",
+    url: "https://rockytnice.cz",
+    siteName: site.name,
     type: "website",
     locale: "cs_CZ",
   },
