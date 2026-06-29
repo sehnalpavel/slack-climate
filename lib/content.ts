@@ -109,11 +109,12 @@ export const pricing = {
   deposit: "Vratná kauce 5 000 Kč (vrací se po předání chalupy bez škod).",
   includedTitle: "V ceně je vše potřebné",
   included: [
-    "Povlečení, ručníky, toaletní papír a tekuté mýdlo",
-    "V zimě vytápění a ohřev vody",
+    "Povlečení a ručníky (postele si hosté povlékají sami)",
+    "Vytápění a ohřev vody (i mimo zimní sezónu)",
+    "Dřevo do krbu",
     "Spotřeba vody, plynu i elektřiny bez doplatků",
     "WiFi připojení zdarma",
-    "3 parkovací místa u chalupy (v zimě může být příjezd obtížnější)",
+    "3 parkovací místa (v zimě u cesty, ~90 m od chalupy)",
   ],
   footnote:
     "Přesnou cenu pro váš termín a počet osob potvrdíme na základě nezávazné poptávky.",
@@ -140,20 +141,52 @@ export const faq = {
       a: "Až pro 20 osob v sedmi pokojích. Ideální pro velké rodiny, party přátel i firemní akce.",
     },
     {
-      q: "Co je v ceně?",
-      a: "Povlečení, ručníky, toaletní papír a mýdlo, spotřeba vody, plynu i elektřiny, v zimě vytápění a ohřev vody, a WiFi zdarma. Vratná kauce je 5 000 Kč a po předání chalupy bez škod se vrací.",
+      q: "Jak probíhá rezervace a platba?",
+      a: "Vyberete termín v kalendáři a odešlete nezávaznou poptávku. Obratem se ozveme s potvrzením a cenovou nabídkou. Záloha je 50 % do 7 dní od rezervace, doplatek pak 14 dní před nástupem spolu s vratnou kaucí 5 000 Kč.",
     },
     {
-      q: "Jak probíhá rezervace?",
-      a: "Vyberete termín v kalendáři dostupnosti a odešlete nezávaznou poptávku. Obratem se ozveme s potvrzením a cenovou nabídkou. Rezervace platí po potvrzení a uhrazení zálohy.",
+      q: "Jak proběhne příjezd a předání klíčů?",
+      a: "Klíče jsou připravené ve schránce s kódovým zámkem. Kód vám pošleme SMS v den příjezdu, takže nemusíte na nikoho čekat. Konkrétní čas příjezdu a odjezdu upřesníme při potvrzení rezervace.",
     },
     {
-      q: "Je možné parkovat u chalupy?",
-      a: "Ano, přímo u chalupy jsou tři parkovací místa.",
+      q: "Je povlečení a ručníky k dispozici?",
+      a: "Ano, povlečení i ručníky jsou v ceně. Postele ale nejsou po příjezdu povlečené — čisté povlečení najdete ve skříni a povléknete si sami. Při odjezdu ho prosím svléknete a uložíte na určené místo.",
     },
     {
-      q: "Dá se přijet i mimo sezónu?",
-      a: "Jasně, chalupa je otevřená celý rok. V zimě je vytápěná a kousek od sjezdovek, v létě je výchozím bodem na túry a výlety.",
+      q: "Co se od nás čeká při odjezdu?",
+      a: "Umýt nádobí, vynést koše, zamést a svléknout a uložit použité povlečení. Nic nad rámec běžného úklidu po sobě — chceme jen předat chalupu připravenou pro další hosty.",
+    },
+    {
+      q: "Můžeme přijet se psem?",
+      a: "Psi jsou vítáni. Prosíme jen o adekvátní úklid po pejskovi — jinak může být drobný příplatek stržený z vratné kauce.",
+    },
+    {
+      q: "Platí v chalupě zákaz kouření?",
+      a: "Ano, uvnitř chalupy se nekouří. Kouřit lze venku.",
+    },
+    {
+      q: "Můžeme pořádat oslavu? Nebude problém s hlukem?",
+      a: "Není problém — chalupa stojí téměř na samotě, takže sousedy nerušíte a můžete si dovolit i hlučnější večírek.",
+    },
+    {
+      q: "Jak je vybavená kuchyně?",
+      a: "Kuchyně je plně vybavená — myčka, lednice, vaření, nádobí a potřeby pro plný počet osob. Stačí dovézt jídlo.",
+    },
+    {
+      q: "Topí se i mimo zimní sezónu? A je dřevo do krbu v ceně?",
+      a: "Topit lze i mimo zimní sezónu a vytápění je v ceně. Dřevo do krbu je rovněž zahrnuté v ceně pobytu.",
+    },
+    {
+      q: "Máte vybavení pro děti?",
+      a: "K dispozici je dětská jídelní židlička.",
+    },
+    {
+      q: "Jak daleko jsou sjezdovky, obchody a restaurace?",
+      a: "Nejblíž je menší areál Studenov; do hlavního areálu Horní Domky se pohodlně svezete skibusem. Dolní náměstí s obchody a restauracemi je kousek od chalupy.",
+    },
+    {
+      q: "Jak je to s příjezdem autem a parkováním?",
+      a: "Když neleží sníh, dojedete autem až k chalupě. V zimě se parkuje nahoře u cesty (3 parkovací místa) a k chalupě je to asi 90 m z kopce.",
     },
   ] as Faq[],
 };
