@@ -81,38 +81,11 @@ export const rooms = {
 };
 
 export const gallery: { src: string; alt: string }[] = [
-  {
-    src: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&w=1200&q=70",
-    alt: "Horská chalupa v zimě",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1200&q=70",
-    alt: "Útulný interiér s krbem",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=70",
-    alt: "Ložnice s výhledem",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=70",
-    alt: "Vybavená kuchyně",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1574367090180-91d795a4e6d6?auto=format&fit=crop&w=1200&q=70",
-    alt: "Kulečníkový stůl",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1486890093247-c9a1de0a86d2?auto=format&fit=crop&w=1200&q=70",
-    alt: "Hřebeny Krkonoš",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1551524559-8af4e6624178?auto=format&fit=crop&w=1200&q=70",
-    alt: "Zimní krajina Krkonoš",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1518733057094-95b53143d2a7?auto=format&fit=crop&w=1200&q=70",
-    alt: "Obývací prostor",
-  },
+  { src: "/fotky/exterier-zima.webp", alt: "Chalupa ROCKytnice v zimě nad zasněženou Rokytnicí" },
+  { src: "/fotky/spolecenska-1.webp", alt: "Společenská místnost s roubenými stěnami a dlouhými stoly" },
+  { src: "/fotky/spolecenska-2.webp", alt: "Jídelna s krbem a dřevěným nábytkem" },
+  { src: "/fotky/kuchyne.webp", alt: "Plně vybavená kuchyně" },
+  { src: "/fotky/exterier-leto.webp", alt: "Chalupa ROCKytnice v létě s červenou střechou" },
 ];
 
 export type PriceRow = { season: string; note: string; price: string };

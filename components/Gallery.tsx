@@ -29,7 +29,7 @@ export default function Gallery() {
             <h2 className="section-title">Nahlédněte dovnitř</h2>
           </div>
           <p className="text-sm text-stone-500">
-            Ukázkové fotky — nahraďte je vlastními snímky chalupy.
+            Klikněte pro zvětšení. Listujte šipkami.
           </p>
         </div>
 

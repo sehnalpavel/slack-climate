@@ -19,14 +19,14 @@ export default function About() {
 
         <Reveal delay={120} className="grid grid-cols-2 gap-4">
           <img
-            src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=800&q=70"
-            alt="Interiér s krbem"
+            src="/fotky/spolecenska-2.webp"
+            alt="Jídelna s krbem"
             className="h-72 w-full rounded-2xl border border-white/10 object-cover"
             loading="lazy"
           />
           <img
-            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=70"
-            alt="Ložnice"
+            src="/fotky/kuchyne.webp"
+            alt="Vybavená kuchyně"
             className="mt-10 h-72 w-full rounded-2xl border border-white/10 object-cover"
             loading="lazy"
           />

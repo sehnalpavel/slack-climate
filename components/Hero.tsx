@@ -6,8 +6,8 @@ export default function Hero() {
       {/* Pozadí */}
       <div className="absolute inset-0 -z-20">
         <img
-          src="https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&w=2000&q=75"
-          alt="Horská chalupa v zimní krajině Krkonoš"
+          src="/fotky/exterier-leto.webp"
+          alt="Chalupa ROCKytnice — pohled na chalupu s červenou střechou"
           className="h-full w-full animate-slow-zoom object-cover"
         />
       </div>
