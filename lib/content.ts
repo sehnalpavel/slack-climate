@@ -17,9 +17,9 @@ export const site = {
 export const contact = {
   // Upravte na své reálné údaje
   phone: "+420 000 000 000",
-  email: "info@chalupa-rockytnice.cz",
+  email: "info@rockytnice.cz",
   reservationEmail:
-    process.env.RESERVATION_EMAIL || "info@chalupa-rockytnice.cz",
+    process.env.RESERVATION_EMAIL || "info@rockytnice.cz",
 };
 
 export const hero = {

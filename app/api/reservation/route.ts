@@ -62,7 +62,7 @@ export async function POST(req: Request) {
     process.env["resend-rockytnice"] ||
     process.env["resend_rockytnice"] ||
     process.env.RESEND_ROCKYTNICE;
-  const fromAddress = process.env.RESEND_FROM || "rezervace@chalupa-rockytnice.cz";
+  const fromAddress = process.env.RESEND_FROM || "info@rockytnice.cz";
   const to = contact.reservationEmail;
 
   // Pokud je nakonfigurován Resend, odešleme e-mail. Jinak poptávku jen
