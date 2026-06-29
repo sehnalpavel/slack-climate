@@ -16,7 +16,7 @@ export const site = {
 
 export const contact = {
   // Upravte na své reálné údaje
-  phone: "+420 000 000 000",
+  phone: "+420 774 201 349",
   email: "info@rockytnice.cz",
   reservationEmail:
     process.env.RESERVATION_EMAIL || "info@rockytnice.cz",
@@ -101,10 +101,10 @@ export const pricing = {
     { name: "Mimo sezónu", period: "zbytek roku", week: "29 800 Kč", weekend: "15 490 Kč" },
   ] as SeasonRow[],
   special: [
-    { name: "Silvestr", period: "6 nocí", price: "84 890 Kč" },
-    { name: "Jarní prázdniny", period: "týden", price: "38 890 Kč" },
-    { name: "Vánoce", period: "4 noci", price: "26 490 Kč" },
-    { name: "Velikonoce", period: "prodloužený víkend", price: "22 490 Kč" },
+    { name: "Silvestr", period: "28. 12. 2026 – 3. 1. 2027 · 6 nocí", price: "84 890 Kč" },
+    { name: "Vánoce", period: "23. – 27. 12. 2026 · 4 noci", price: "26 490 Kč" },
+    { name: "Jarní prázdniny", period: "únor 2027 · týden", price: "38 890 Kč" },
+    { name: "Velikonoce", period: "26. – 29. 3. 2027 · prodloužený víkend", price: "22 490 Kč" },
   ] as SpecialRow[],
   deposit: "Vratná kauce 5 000 Kč (vrací se po předání chalupy bez škod).",
   includedTitle: "V ceně je vše potřebné",
@@ -117,7 +117,7 @@ export const pricing = {
     "3 parkovací místa (v zimě u cesty, ~90 m od chalupy)",
   ],
   footnote:
-    "Přesnou cenu pro váš termín a počet osob potvrdíme na základě nezávazné poptávky.",
+    "Přesnou cenu pro váš termín a počet osob potvrdíme na základě nezávazné poptávky. Termín jarních prázdnin je orientační podle regionu.",
 };
 
 export const surroundings = {
