@@ -56,7 +56,12 @@ export async function POST(req: Request) {
   ];
   const body = lines.join("\n");
 
-  const apiKey = process.env.RESEND_API_KEY;
+  // Klíč přečteme pod standardním názvem i pod názvy nastavenými na Vercelu.
+  const apiKey =
+    process.env.RESEND_API_KEY ||
+    process.env["resend-rockytnice"] ||
+    process.env["resend_rockytnice"] ||
+    process.env.RESEND_ROCKYTNICE;
   const fromAddress = process.env.RESEND_FROM || "rezervace@chalupa-rockytnice.cz";
   const to = contact.reservationEmail;
 
@@ -86,6 +91,7 @@ export async function POST(req: Request) {
           { status: 502 },
         );
       }
+      console.log(`[REZERVACE] odesláno přes Resend na ${to} (${data.from} → ${data.to})`);
     } catch (err) {
       console.error("Reservation send failed:", err);
       return NextResponse.json(
