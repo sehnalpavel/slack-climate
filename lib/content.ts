@@ -88,19 +88,35 @@ export const gallery: { src: string; alt: string }[] = [
   { src: "/fotky/exterier-leto.webp", alt: "Chalupa ROCKytnice v létě s červenou střechou" },
 ];
 
-export type PriceRow = { season: string; note: string; price: string };
+export type SeasonRow = { name: string; period: string; week: string; weekend: string };
+export type SpecialRow = { name: string; period: string; price: string };
 
 export const pricing = {
   title: "Ceník",
   intro:
-    "Cena je za celou chalupu a noc. Přesnou kalkulaci podle termínu a počtu osob potvrdíme na základě poptávky.",
-  rows: [
-    { season: "Hlavní sezóna", note: "Zimní prázdniny, Vánoce, Silvestr", price: "na vyžádání" },
-    { season: "Vedlejší sezóna", note: "Jaro a podzim", price: "na vyžádání" },
-    { season: "Letní sezóna", note: "Červenec a srpen", price: "na vyžádání" },
-  ] as PriceRow[],
+    "Ceny jsou uvedeny za celý objekt. Minimální délka pobytu jsou 2 noci. Týden = 7 nocí, víkend = 2 noci (pá–ne).",
+  seasons: [
+    { name: "Zimní sezóna", period: "1. 12. – 15. 3.", week: "41 800 Kč", weekend: "17 890 Kč" },
+    { name: "Letní sezóna", period: "15. 6. – 15. 9.", week: "31 800 Kč", weekend: "15 490 Kč" },
+    { name: "Mimo sezónu", period: "zbytek roku", week: "29 800 Kč", weekend: "15 490 Kč" },
+  ] as SeasonRow[],
+  special: [
+    { name: "Silvestr", period: "6 nocí", price: "84 890 Kč" },
+    { name: "Jarní prázdniny", period: "týden", price: "38 890 Kč" },
+    { name: "Vánoce", period: "4 noci", price: "26 490 Kč" },
+    { name: "Velikonoce", period: "prodloužený víkend", price: "22 490 Kč" },
+  ] as SpecialRow[],
+  deposit: "Vratná kauce 5 000 Kč (vrací se po předání chalupy bez škod).",
+  includedTitle: "V ceně je vše potřebné",
+  included: [
+    "Povlečení, ručníky, toaletní papír a tekuté mýdlo",
+    "V zimě vytápění a ohřev vody",
+    "Spotřeba vody, plynu i elektřiny bez doplatků",
+    "WiFi připojení zdarma",
+    "3 parkovací místa u chalupy (v zimě může být příjezd obtížnější)",
+  ],
   footnote:
-    "V ceně je povlečení, ručníky, mýdlo, energie, topení a teplá voda. Vratná kauce a poplatek za závěrečný úklid podle dohody.",
+    "Přesnou cenu pro váš termín a počet osob potvrdíme na základě nezávazné poptávky.",
 };
 
 export const surroundings = {
@@ -125,7 +141,7 @@ export const faq = {
     },
     {
       q: "Co je v ceně?",
-      a: "Povlečení, ručníky, mýdlo, energie, topení a teplá voda. Vratná kauce a závěrečný úklid se řeší podle dohody.",
+      a: "Povlečení, ručníky, toaletní papír a mýdlo, spotřeba vody, plynu i elektřiny, v zimě vytápění a ohřev vody, a WiFi zdarma. Vratná kauce je 5 000 Kč a po předání chalupy bez škod se vrací.",
     },
     {
       q: "Jak probíhá rezervace?",
